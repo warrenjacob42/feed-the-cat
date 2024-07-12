@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#color-box {
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.img {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  /* padding-top: 40px; */
+  /* height: 20px; */
+  font-size: 30px;
+  color: whitesmoke;
+  text-shadow: 3px 4px 3px black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+  border-radius: 10px;
+  width: 450px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  font-family: "intercom-font";
+}
+
+.object {
+    position: absolute;
+    top: 200px;
+    /* animation: moving 5s linear infinite; */
+    transition: ease;
+    pointer-events: none;
+}
+
+.object img {
+  max-width: 200px;
+}
+
+/* @keyframes moving {
+    0%{
+        transform: translateX(100vw);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+} */
+
+/* body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+#color-box {
+    width: 500px;
+    height: 700px;
+    display: flexbox;
+    justify-content: center;
+  }
+.name{
+    position: absolute;
+    top: 50%;
+    left: calc(50%-103.75px);
+    font-family: "Bowlby One SC";
+}  
+.button{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: aliceblue;
+    width: 100px;
+    height: 50px;
+    border-radius: 10%;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+} */

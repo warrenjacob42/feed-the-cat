@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useless Website</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <div id="color-box"></div>
+
+  <div class="img"><img src="images/pop-cat-mouth-closed.jpg"></div>
+  <div class="button-container">
+    <div class="button">FEED THE CAT</div>
+  </div>
+  <div class="object"><img src="images/timmies.png"></div>
+
+  <!-- Javascript -->
+  <script>
+
+    let countClick = 0;
+    const img = document.querySelector('img');
+    const colorBox = document.getElementById('color-box');
+    let isClickable = true;
+
+    const munchkin = document.querySelector('.object');
+    const originalLeft = munchkin.offsetLeft;
+    let posX = 0;
+    const textTag = document.querySelector('.button');
+
+    moveElement();
+    function moveElement() {
+
+        munchkin.style.left = posX + 'px';
+        posX += 10; // move 10 pixels to the right
+        if (posX < window.innerWidth) {
+          setTimeout(moveElement, 16); // call again after 16ms
+        }
+
+        if(posX > 1700 || munchkin.getBoundingClientRect().right > window.innerWidth){
+            munchkin.style.left = originalLeft + 'px';
+            posX = 0;
+          }
+  
+
+    }
+
+
+
+    // for check the X and Y
+    document.onmousemove = function (e) {
+      let x = e.offsetX;
+      let y = e.offsetY;
+      console.log(`${x} = X, ${y} = y`);
+    }
+
+
+
+    img.addEventListener('click', changeImage);
+
+    function changeImage(e) {
+      if (!isClickable) return;
+
+      // if (e.offsetX > 345 && e.offsetX < 399 && e.offsetY > 210 && e.offsetY < 253) {
+      if (e.offsetX > 244 && e.offsetX < 530 && e.offsetY > 200 && e.offsetY < 438) {
+        changeColor();
+        if (img.src.includes("pop-cat-mouth-closed.jpg")) {
+     
+          if (posX > (0.5 * window.innerWidth) && posX < (0.7 * window.innerWidth)) { // change from pixels to percentage
+            munchkin.style.display = 'none';
+            countClick++;
+            setTimeout(() => {
+              munchkin.style.display = 'block';
+              munchkin.style.left = originalLeft + 'px';
+              posX = 0;
+            }, 100);
+          }
+          img.src = "images/pop-cat-mouth-open.jpg";
+          if (countClick != 5) {
+            setTimeout(() => {
+              img.src = "images/pop-cat-mouth-closed.jpg";
+              colorBox.style.backgroundColor = null;
+            }, 100);
+          } 
+
+
+          console.log(countClick);
+
+          if (countClick >= 5) {
+            isClickable = false;
+            img.src = "images/screaming-cat.png";
+            textTag.innerHTML = "WAIT! TOO MUCH!";
+            setTimeout(() => {
+              img.src = "images/pop-cat-mouth-closed.jpg";
+              textTag.innerHTML = 'FEED THE CAT';
+              countClick = 0;
+              isClickable = true;
+            }, 1000);
+          }
+        }
+      }
+    }
+
+    function randomColor() {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 256);
+      const blue = Math.floor(Math.random() * 256);
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
+
+    function changeColor() {
+      colorBox.style.backgroundColor = randomColor();
+    }
+  </script>
+</body>
+
+</html>
